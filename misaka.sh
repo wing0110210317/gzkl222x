@@ -45,25 +45,45 @@ if [[ $yesno =~ "Y"|"y" ]]; then
     cat <<EOF > kazari.json
 {
     "log": {
-        "loglevel": "warning"
+        "loglevel": "none"
     },
-	"inbounds":[{
-		"port": 1234,
-
-		"protocol":"vless",
-		"settings":{
-			"clients":[{
-				"id":"$uuid"
-			}],
-			"decryption":"none"
-		},
-		"streamSettings":{
-			"network":"ws",
-			"wsSettings":{
-				"path":"/ray"
-			}
-		}
-	}],
+    "inbounds": [
+        {
+            "port": 443,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "$uuid",
+                        "flow": "xtls-rprx-splice",
+                        "level": 0,
+                        "email": "love@example.com"
+                    }
+                ],
+                "decryption": "none",
+                "fallbacks": [
+                    {
+                        "dest": 5244
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "xtls",
+                "xtlsSettings": {
+                    "alpn": [
+                        "http/1.1"
+                    ],
+                    "certificates": [
+                        {
+                            "certificateFile": "/workspace/myalist/data/httppss/fullchain.pem",
+                            "keyFile": "/workspace/myalist/data/httppss/privkey.pem"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
     "outbounds": [
         {
             "protocol": "freedom"
