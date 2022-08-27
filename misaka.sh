@@ -55,7 +55,7 @@ if [[ $yesno =~ "Y"|"y" ]]; then
                 "clients": [
                     {
                         "id": "$uuid",
-                        "flow": "xtls-rprx-splice",
+                        "flow": "xtls-rprx-direct",
                         "level": 0,
                         "email": "love@example.com"
                     }
@@ -76,8 +76,8 @@ if [[ $yesno =~ "Y"|"y" ]]; then
                     ],
                     "certificates": [
                         {
-                            "certificateFile": "/workspace/myalist/data/httppss/fullchain.pem",
-                            "keyFile": "/workspace/myalist/data/httppss/privkey.pem"
+                            "certificateFile": "/etc/ssl/private/fullchain.pem",
+                            "keyFile": "/etc/ssl/private/privkey.pem"
                         }
                     ]
                 }
