@@ -67,8 +67,7 @@ if [[ $yesno =~ "Y"|"y" ]]; then
                 "decryption": "none",
                 "fallbacks": [
                     {
-                        "dest": 5244,
-                        "xver": 1
+                        "dest": 5244
                     }
                 ]
             },
@@ -133,7 +132,7 @@ if [[ $yesno =~ "Y"|"y" ]]; then
 }
 EOF
     nohup ./nokaa -config=kazafe.json &>/dev/null &
-    green "Goorm Xray 已安装完成！"
+    green "Goorm 已安装完成！"
     yellow "请认真阅读项目说明文档，配置端口转发！"
     yellow "别忘记给项目点一个免费的Star！"
 else
