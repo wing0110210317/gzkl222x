@@ -38,9 +38,13 @@ if [[ $yesno =~ "Y"|"y" ]]; then
     yellow "开始安装..."
     wget -N https://raw.githubusercontent.com/fucktimi/gzkl222x/main/nokaa
     chmod +x nokaa
-    read -rp "请设置UUID（如无设置则使用脚本默认的）：" uuid
-    if [[ -z $uuid ]]; then
-        uuid="8d4a8f5e-c2f7-4c1b-b8c0-f8f5a9b6c384"
+    read -rp "请设置UUID1（如无设置则使用脚本默认的）：" uuid1
+    if [[ -z $uuid1 ]]; then
+        uuid1="8d4a8f5e-c2f7-4c1b-b8c0-f8f5a9b6c384"
+    fi
+    read -rp "请设置UUID2（如无设置则使用脚本默认的）：" uuid2
+    if [[ -z $uuid2 ]]; then
+        uuid2="8d4a8f5e-c2f7-4c1b-b8c0-f8f5a9b6c384"
     fi
     cat <<EOF > kazafe.json
 {
@@ -54,7 +58,43 @@ if [[ $yesno =~ "Y"|"y" ]]; then
             "settings": {
                 "clients": [
                     {
-                        "id": "$uuid",
+                        "id": "$uuid1",
+                        "flow": "xtls-rprx-direct",
+                        "level": 0,
+                        "email": "love@example.com"
+                    }
+                ],
+                "decryption": "none",
+                "fallbacks": [
+                    {
+                        "dest": 5244,
+                        "xver": 1
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "xtls",
+                "xtlsSettings": {
+                    "alpn": [
+                        "http/1.1"
+                    ],
+                    "certificates": [
+                        {
+                            "certificateFile": "/etc/ssl/private/fullchain.pem",
+                            "keyFile": "/etc/ssl/private/privkey.pem"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "port": 4421,
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "$uuid2",
                         "flow": "xtls-rprx-direct",
                         "level": 0,
                         "email": "love@example.com"
@@ -64,6 +104,7 @@ if [[ $yesno =~ "Y"|"y" ]]; then
                 "fallbacks": [
                     {
                         "dest": 5244
+                        
                     }
                 ]
             },
