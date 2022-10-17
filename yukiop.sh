@@ -61,7 +61,10 @@ if [[ $yesno =~ "Y"|"y" ]]; then
             },
             "streamSettings": {
                 "network": "ws",
-                "security": "none"
+                "security": "none",
+                "wsSettings": {
+                    "path": "/wing"
+                }
             }
         },
         {
