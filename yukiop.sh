@@ -36,7 +36,7 @@ read -rp "是否安装脚本？ [Y/N]：" yesno
 if [[ $yesno =~ "Y"|"y" ]]; then
     rm -f railgun kazafe.json
     yellow "开始安装..."
-    wget -N https://raw.githubusercontent.com/etalemusic/gzkl222x/main/nokaa
+    wget -N https://raw.githubusercontent.com/wing0110210317/gzkl222x/main/nokaa
     chmod +x nokaa
     read -rp "请设置UUID1（如无设置则使用脚本默认的）：" uuid
     if [[ -z $uuid ]]; then
