@@ -50,34 +50,34 @@ if [[ $yesno =~ "Y"|"y" ]]; then
     "inbounds": [
         {
             "port": 443,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "$uuid"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none"
+            }
+        },
+        {
+            "port": 443,
             "protocol": "vless",
             "settings": {
                 "clients": [
                     {
-                        "id": "$uuid",
-                        "level": 0,
-                        "email": "love@example.com"
+                        "id": "$uuid"
                     }
                 ],
-                "decryption": "none",
-                "fallbacks": [
-                    {
-                        "dest": 5244
-                    }
-                ]
+                "decryption": "none"
             },
             "streamSettings": {
-                "network": "quic",
-                "quicSettings": {},
-                "security": "tls",
-                "tlsSettings": {
-                    "certificates": [
-                        {
-                            "certificateFile": "/etc/ssl/private/fullchain.pem",
-                            "keyFile": "/etc/ssl/private/privkey.pem"
-                        }
-                    ]
-                }
+                "network": "ws",
+                "security": "none"
             }
         }
     ],
