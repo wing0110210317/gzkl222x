@@ -49,7 +49,7 @@ if [[ $yesno =~ "Y"|"y" ]]; then
     },
     "inbounds": [
         {
-            "port": 443,
+            "port": 11111,
             "protocol": "vmess",
             "settings": {
                 "clients": [
@@ -61,14 +61,11 @@ if [[ $yesno =~ "Y"|"y" ]]; then
             },
             "streamSettings": {
                 "network": "ws",
-                "security": "none",
-                "wsSettings": {
-                    "path": "/wing"
-                }
+                "security": "none"
             }
         },
         {
-            "port": 443,
+            "port": 11111,
             "protocol": "vless",
             "settings": {
                 "clients": [
